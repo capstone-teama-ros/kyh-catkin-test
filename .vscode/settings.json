@@ -1,4 +1,8 @@
 {
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-iot.vscode-ros",
+    "editor.formatOnSave": true,
+  },
   "python.autoComplete.extraPaths": [
     "/opt/ros/melodic/lib/python2.7/dist-packages"
   ],
