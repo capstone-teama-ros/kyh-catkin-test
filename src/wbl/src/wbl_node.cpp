@@ -37,8 +37,8 @@ public:
       // Transform polar coordinates (origin at robot) to cartesian (origin at left top of image)
       float point_x = range * std::cos(angle);
       float point_y = range * std::sin(angle);
-      int cx = cvRound(image_.cols / 2.0 + point_x * pixels_per_meter);
-      int cy = cvRound(image_.rows / 2.0 + point_y * pixels_per_meter);
+      int cx = cvRound(image_.cols / 2.0 - point_y * pixels_per_meter);
+      int cy = cvRound(image_.rows / 2.0 - point_x * pixels_per_meter);
 
       const int DOT_SIZE = 2;
       cv::Rect pointRect(cx - DOT_SIZE, cy - DOT_SIZE, 2 * DOT_SIZE, 2 * DOT_SIZE);
@@ -53,14 +53,14 @@ public:
       auto cos_theta = std::cos(theta);
       auto sin_theta = std::sin(theta);
 
-      auto cx = rho * cos_theta * pixels_per_meter + image_.cols / 2.0;
-      auto cy = rho * sin_theta * pixels_per_meter + image_.rows / 2.0;
+      auto cx = image_.cols / 2.0 - rho * sin_theta * pixels_per_meter;
+      auto cy = image_.rows / 2.0 - rho * cos_theta * pixels_per_meter;
 
       // Create two distant points on the line
-      int ax = cvRound(cx + 100 * image_.cols * sin_theta);
-      int ay = cvRound(cy - 100 * image_.rows * cos_theta);
-      int bx = cvRound(cx - 100 * image_.cols * sin_theta);
-      int by = cvRound(cy + 100 * image_.rows * cos_theta);
+      int ax = cvRound(cx + 100 * image_.cols * cos_theta);
+      int ay = cvRound(cy - 100 * image_.rows * sin_theta);
+      int bx = cvRound(cx - 100 * image_.cols * cos_theta);
+      int by = cvRound(cy + 100 * image_.rows * sin_theta);
 
       cv::line(image_, { ax, ay }, { bx, by }, cv::Scalar(0, 255, 255));
     }
