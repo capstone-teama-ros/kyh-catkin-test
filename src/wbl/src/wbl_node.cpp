@@ -51,6 +51,9 @@ public:
       cv::rectangle(image_, pointRect, cv::Scalar(255, 255, 0), CV_FILLED);
     }
 
+    // Draw the robot
+    cv::circle(image_, c_robot, 3, cv::Scalar(255, 0, 255), CV_FILLED);
+
     // Draw lines found
     for (auto& line : lines_)
     {
