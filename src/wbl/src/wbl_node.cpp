@@ -25,6 +25,8 @@ public:
 
     image_ = cv::Mat::zeros(image_size_, image_size_, CV_8UC3);
 
+    cv::Point c_robot(cvRound(image_.cols / 2.0), image_.rows / 2.0);
+
     // Draw LIDAR points
     for (size_t i = 0; i < message->ranges.size(); ++i)
     {
@@ -40,6 +42,10 @@ public:
       int cx = cvRound(image_.cols / 2.0 - point_y * pixels_per_meter);
       int cy = cvRound(image_.rows / 2.0 - point_x * pixels_per_meter);
 
+      // Draw a scanline from the robot to the dot
+      cv::line(image_, c_robot, { cx, cy }, cv::Scalar(128, 128, 0), 1, CV_AA);
+
+      // Draw the dot
       const int DOT_SIZE = 2;
       cv::Rect pointRect(cx - DOT_SIZE, cy - DOT_SIZE, 2 * DOT_SIZE, 2 * DOT_SIZE);
       cv::rectangle(image_, pointRect, cv::Scalar(255, 255, 0), CV_FILLED);
