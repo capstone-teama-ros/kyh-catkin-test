@@ -2,12 +2,12 @@
 <package format="2">
   <name>wbl</name>
   <version>0.0.0</version>
-  <description>The wbl package</description>
+  <description>Wall-Based Localization Package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="phil-wsl@todo.todo">phil-wsl</maintainer>
+  <maintainer email="pastelmind@kaist.ac.kr">Yehyoung Kang</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
